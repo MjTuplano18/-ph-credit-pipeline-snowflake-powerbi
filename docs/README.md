@@ -116,12 +116,12 @@ The Power BI dashboard connects to the MART tables and visualizes:
 
 ## Repository Docs
 
-- End-to-end walkthrough: [docs/phase_all_walkthrough.md](docs/phase_all_walkthrough.md)
-- Phase 0 overview: [docs/phase_0_overview.md](docs/phase_0_overview.md)
-- Phase 1 setup: [docs/phase_1_setup.md](docs/phase_1_setup.md)
-- Phase 2 extract: [docs/phase_2_extract.md](docs/phase_2_extract.md)
-- Phase 3 load: [docs/phase_3_load.md](docs/phase_3_load.md)
-- Phase 4 transform: [docs/phase_4_transform.md](docs/phase_4_transform.md)
-- Phase 5 Airflow: [docs/phase_5_airflow.md](docs/phase_5_airflow.md)
-- Phase 6 Docker + CI/CD: [docs/phase_6_ci_cd.md](docs/phase_6_ci_cd.md)
-- Phase 7 dashboard: [docs/phase_7_dashboard.md](docs/phase_7_dashboard.md)
+- End-to-end walkthrough: [docs/phase_all_walkthrough.md](phase_all_walkthrough.md)
+- Phase 0 overview: [docs/phase_0_overview.md](phase_0_overview.md)
+- Phase 1 setup: [docs/phase_1_setup.md](phase_1_setup.md)
+- Phase 2 extract: [docs/phase_2_extract.md](phase_2_extract.md)
+- Phase 3 load: [docs/phase_3_load.md](phase_3_load.md)
+- Phase 4 transform: [docs/phase_4_transform.md](phase_4_transform.md)
+- Phase 5 Airflow: [docs/phase_5_airflow.md](phase_5_airflow.md)
+- Phase 6 Docker + CI/CD: [docs/phase_6_ci_cd.md](phase_6_ci_cd.md)
+- Phase 7 dashboard: [docs/phase_7_dashboard.md](phase_7_dashboard.md)
