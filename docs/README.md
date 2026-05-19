@@ -95,6 +95,14 @@ The Power BI dashboard connects to the MART tables and visualizes:
 - DTI vs default rate (bubble size = loan count)
 - KPI cards for default rate, loan count, average loan amount, and priority score
 
+## Screenshots
+
+![Power BI dashboard](docs/screenshots/snowflake-dashboard.png)
+![Airflow DAG graph](docs/screenshots/airflow-graph.png)
+![Airflow DAG run](docs/screenshots/air-flow.png)
+![dbt test results](docs/screenshots/dbt-test.png)
+![Docker compose run](docs/screenshots/docker-ph-analytics-pipeline.png)
+
 ## Testing and Quality
 
 - dbt tests enforce not-null, unique, and accepted values
