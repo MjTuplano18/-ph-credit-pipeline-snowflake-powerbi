@@ -1,0 +1,18 @@
+# FILE: docker-compose.ghcr.yml
+# PURPOSE: Optional override to pull Airflow image from GHCR
+# PHASE: 6
+# DEPENDS ON: GHCR image published by CI/CD
+# OUTPUTS: Airflow services running from GHCR image
+
+services:
+  airflow-webserver:
+    image: ${GHCR_IMAGE}
+    build: null
+
+  airflow-scheduler:
+    image: ${GHCR_IMAGE}
+    build: null
+
+  airflow-init:
+    image: ${GHCR_IMAGE}
+    build: null

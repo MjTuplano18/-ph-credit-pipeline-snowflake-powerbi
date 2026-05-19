@@ -1,0 +1,11 @@
+# FILE: requirements.txt
+# PURPOSE: Python dependencies for the pipeline
+# PHASE: 1
+# DEPENDS ON: Python venv
+# OUTPUTS: Reproducible dependency list for installs and CI
+snowflake-connector-python==4.5.0
+python-dotenv==1.0.1
+pandas==2.1.4
+requests==2.34.2
+dbt-core==1.11.10
+dbt-snowflake==1.11.5

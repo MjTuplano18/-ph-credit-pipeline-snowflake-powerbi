@@ -1,0 +1,15 @@
+# Python cache and virtual environments
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Local environment secrets
+.env
+
+# Large/raw data and generated artifacts
+data/
+.dbt/
+target/
+logs/
+.pytest_cache/

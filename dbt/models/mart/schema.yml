@@ -1,0 +1,28 @@
+# FILE: schema.yml
+# PURPOSE: Define tests for mart models
+# PHASE: 4
+# DEPENDS ON: mart models built by dbt
+# OUTPUTS: dbt tests for business outputs
+
+version: 2
+
+models:
+  - name: mart_default_risk
+    description: Default risk by loan segment
+    columns:
+      - name: loan_grade
+        tests:
+          - not_null
+      - name: loan_sub_grade
+        tests:
+          - not_null
+      - name: default_rate
+        tests:
+          - not_null
+
+  - name: mart_collections_priority
+    description: Collections priority ranking
+    columns:
+      - name: priority_score
+        tests:
+          - not_null

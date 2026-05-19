@@ -1,0 +1,42 @@
+# FILE: schema.yml
+# PURPOSE: Define sources and tests for staging models
+# PHASE: 4
+# DEPENDS ON: RAW schema tables in Snowflake
+# OUTPUTS: dbt tests and source metadata
+
+version: 2
+
+sources:
+  - name: raw
+    database: "{{ env_var('SNOWFLAKE_DATABASE') }}"
+    schema: "{{ env_var('SNOWFLAKE_SCHEMA_RAW', 'RAW') }}"
+    tables:
+      - name: raw_loans
+      - name: raw_bsp_rates
+
+models:
+  - name: stg_loans
+    description: Cleaned Lending Club loans
+    columns:
+      - name: loan_id
+        tests:
+          - not_null
+          - unique
+      - name: loan_grade
+        tests:
+          - accepted_values:
+              arguments:
+                values: ["A", "B", "C", "D", "E", "F", "G"]
+      - name: issue_date
+        tests:
+          - not_null
+
+  - name: stg_bsp_rates
+    description: Cleaned macro indicators
+    columns:
+      - name: rate_period
+        tests:
+          - not_null
+      - name: inflation_rate
+        tests:
+          - not_null

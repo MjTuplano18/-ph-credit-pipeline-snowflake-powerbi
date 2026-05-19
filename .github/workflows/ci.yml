@@ -1,0 +1,66 @@
+# FILE: ci.yml
+# PURPOSE: Run CI checks (tests + dbt compile) on push/PR
+# PHASE: 6
+# DEPENDS ON: requirements.txt and dbt project
+# OUTPUTS: CI status checks in GitHub
+
+name: ci
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  test-and-compile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      SNOWFLAKE_ACCOUNT: "dummy"
+      SNOWFLAKE_USER: "dummy"
+      SNOWFLAKE_PASSWORD: "dummy"
+      SNOWFLAKE_ROLE: "dummy"
+      SNOWFLAKE_WAREHOUSE: "dummy"
+      SNOWFLAKE_DATABASE: "dummy"
+      SNOWFLAKE_SCHEMA_STAGING: "STAGING"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: "pip"
+          cache-dependency-path: "requirements.txt"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Create dbt profile
+        run: |
+          mkdir -p ~/.dbt
+          cat > ~/.dbt/profiles.yml << 'EOF'
+          ph_credit_pipeline:
+            target: dev
+            outputs:
+              dev:
+                type: snowflake
+                account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
+                user: "{{ env_var('SNOWFLAKE_USER') }}"
+                password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+                role: "{{ env_var('SNOWFLAKE_ROLE') }}"
+                warehouse: "{{ env_var('SNOWFLAKE_WAREHOUSE') }}"
+                database: "{{ env_var('SNOWFLAKE_DATABASE') }}"
+                schema: "{{ env_var('SNOWFLAKE_SCHEMA_STAGING') }}"
+                threads: 4
+          EOF
+
+      - name: dbt compile
+        run: dbt compile --project-dir dbt
+
+      - name: pytest
+        run: pytest -q
